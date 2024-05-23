@@ -1,0 +1,22 @@
+# This exercise was part of of the chapter about image analysis
+# Specifically, this exercise was about an image analysis process called dilation
+# During dilation, the value of a pixel is replaced by the maximum value of the pixel itself and its neighbours.
+# For each pixel (excluding the last column), 
+# it replaces each value with the maximum value between the current pixel and the next pixel in the same row
+# and, therefore, the function returns this modified image.
+
+import numpy as np
+im = np.array([[[0.6,0.5,0.7],[0.0,0.3,0.2],[0.7,0.5,0.1]],\
+               [[0.4,0.8,0.7],[0.5,0.3,0.2],[0.6,0.5,0.3]],\
+               [[0.7,0.7,0.6],[0.8,0.4,0.3],[0.4,0.8,0.3]]])    
+def special_dilation(im):
+    im_new=1*im 	#[Copies the picture 1:1]
+    for i in range(len(im)):  #[Looks at the lines]
+        for j in range(len(im[i])-1): #[Looks at the single pixels, ignores the last one]
+            for k in range(3): #[Range 3 because we always have 3 values for a pixel]
+                im_new[i,j,k]=max(im[i,j,k],im[i,j+1,k]) #[Compares pixels and takes only the max values]
+    return (im_new)
+im_new = special_dilation(im)
+print(im)
+print (im_new)
+print (np.sum(im_new))
