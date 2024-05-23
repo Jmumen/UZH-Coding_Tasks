@@ -1,0 +1,26 @@
+# In this exercise we were given two sequences of amino acids of two different proteins
+# The goal was to write a program that shows us the longest shared sequence between both of these proteins 
+# The program was to be general enough so the sequences could be exhanged for ANY protein, 
+# and should still work even if the sequences did not have the same length
+# Assumptions made: There is only one longest shared sequence & its length is always at least 1 amino acid
+
+
+seq_1 = 'MNENLFASFIAPTILGLPAAVLIILFPPLLIPTSKYLINNRLITTQQWLIKLTSKQMMTMHNTKGRTWSLMLVSLIIFIATTNLLGLLPHSFTPTTQLSMNLAMAIPLWAGTVIMGFRSKIKNALAHFLPQGTPTPLIPMLVIIETISLLIQPMALAVRLTANITAGHLLMHLIGSATLAMSTINLPSTLIIFTILILLTILEIAVALIQAYVFTLLVSLYLHDNT'
+seq_2 = 'MMTNLFSVFDPSTTILNLSLNWLSTFLGLLLIPFSFWLLPNRFQVVWNNILLTLHKEFKTLLGPSGHNGSTLMFISLFSLIMFNNFLGLFPYIFTSTSHLTLTLALAFPLWLSFMLYGWINHTQHMFAHLVPQGTPPVLMPFMVCIETISNVIRPGTLAVRLTANMIAGHLLLTLLGNTGPMTTNYIILSLILTTQIALLVLESAVAIIQSYVFAVLSTLYSSEVN'
+l_shared = ''
+gemeinsam = ''
+
+zahl = 0
+longest = 0
+for i in seq_1:
+    gemeinsam += i
+    if gemeinsam in seq_2:
+        zahl += 1
+    if gemeinsam not in seq_2:
+        if zahl > longest:
+            longest = zahl
+            l_shared = gemeinsam[0:len(gemeinsam)-1] 
+        else:
+            zahl = 0
+            gemeinsam = ''
+print(l_shared)            # For the given proteins the longest shared sequence is: LAVRLTAN
