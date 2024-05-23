@@ -1,0 +1,71 @@
+# For this exercise we were given the following task:
+# The number of predators and prey in a region depend on each other.
+# Calculate the predator (fox) and prey (rabbit) population after 200 days
+# Let's make the following assumptions: 
+# Rabbits have unlimited food supply. 
+# --> Thus, the rabbit population increases by 5% each day as the net result of birth and natural death. 
+# --> At the same time, the rabbit population is decreased by the presence of foxes. 
+# --> The decrease is proportional to the number of encounters between rabbits and foxes. 
+# --> The more foxes there are, the more rabbits are being caught and the more rabbits there are, the easier it is for foxes to catch the rabbits. 
+# --> Specifically, each day the rabbit population is reduced by 0.0002*(number of foxes)*(number of rabbits).
+# If there were no rabbits, the fox population would decrease by 10% per day as the net result of birth and natural death. 
+# --> The presence of rabbits has a positive influence on the number of foxes. 
+# --> This depends on how many rabbits are being caught and this is again dependent on the number of foxes as well as the number of rabbits. 
+# --> The increase amounts to 0.0001*(number of foxes)*(number of rabbits) each day.
+# Enter the numbers of foxes and rabbits respectively after 200 days, if there are 100 foxes and 1000 rabbits present in the beginning. 
+# Your program should work with float without rounding, except for the final answer, which is to be rounded down to an integer (manually).
+rabbit = 1000
+rabbitnew = 0
+fox = 100
+foxnew = 0
+day = 0
+while day < 200:
+    rabbitnew = rabbit + (rabbit*0.05) - (0.0002*fox*rabbit)
+    foxnew = fox + 0.0001*fox*rabbit - fox*0.1
+    rabbit = rabbitnew
+    rabbitnew = 0
+    fox = foxnew
+    foxnew = 0
+    day += 1
+print (fox)          # Fox population: 58.41866545001718
+print (rabbit)       # Rabbit population: 1379.4161257415806
+
+
+
+# By only updating the model every day, I discovered that an error was happening and the rabbit population became negative after ~2000 days
+# By updating the model more frequently, for example each hour, the negative populations disappeared. 
+# However, the model would be somewhat more realistic if birth and death rates would be continuously adjusted to the current population sizes.
+rabbit = 1000
+rabbitnew = 0
+fox = 100
+foxnew = 0
+hour = 0
+while hour < 200*24:
+    rabbitnew = rabbit + (rabbit*0.05)/24 - (0.0002*fox*rabbit)/24
+    foxnew = fox + (0.0001*fox*rabbit)/24 - (fox*0.1)/24
+    rabbit = rabbitnew
+    rabbitnew = 0
+    fox = foxnew
+    foxnew = 0
+    hour += 1
+print (fox)          # Fox population: 142.98463546250488
+print (rabbit)       # Rabbit population: 1514.0965071843468
+
+
+
+# Out of curiosity I now wanted to see what would happen if I updated the model every minute instead of every hour
+rabbit = 1000
+rabbitnew = 0
+fox = 100
+foxnew = 0
+minute = 0
+while minute < 200*24*60:
+    rabbitnew = rabbit + (rabbit*0.05)/24/60 - (0.0002*fox*rabbit)/24/60
+    foxnew = fox + (0.0001*fox*rabbit)/24/60 - (fox*0.1)/24/60
+    rabbit = rabbitnew
+    rabbitnew = 0
+    fox = foxnew
+    foxnew = 0
+    minute += 1
+print (fox)          # Fox population: 146.63299423547798
+print (rabbit)       # Rabbit population: 1510.9786503848654
