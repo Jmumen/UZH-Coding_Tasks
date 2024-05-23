@@ -3,7 +3,7 @@
 # During dilation, the value of a pixel is replaced by the maximum value of the pixel itself and its neighbours.
 # For each pixel (excluding the last column), 
 # it replaces each value with the maximum value between the current pixel and the next pixel in the same row
-# and, therefore, the function returns this modified image.
+# and, therefore, the function returns a modified image.
 
 import numpy as np
 im = np.array([[[0.6,0.5,0.7],[0.0,0.3,0.2],[0.7,0.5,0.1]],\
