@@ -1,0 +1,15 @@
+# In this exercise we were given the task to write a program that, based on the 4 bases in DNA A, T, C and G 
+# creates a list of codons (sets of 3 bases that code for amino acids)
+# The list should only contain all the possible codons that contained one base twice but did not include 
+# codons with 3 different bases or 3x the same base
+# The print command simply shows us the 27th base from the generated list --> In this case TAA
+
+basen = ['A', 'T', 'C', 'G']
+codons = []
+for base_1 in basen:
+    for base_2 in basen:
+        for base_3 in basen:
+            if not (base_1 == base_2 and base_2 == base_3)and(base_1 == base_2 or base_2 == base_3 or base_3 == base_1):
+                codons.append(base_1 + base_2 + base_3)
+codons.sort()
+print(codons[27])
