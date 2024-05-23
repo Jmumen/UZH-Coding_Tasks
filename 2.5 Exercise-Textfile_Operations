@@ -1,0 +1,19 @@
+# In this exercise we were given a fragment of a play by Shakespear as a txt file ('Shakespeare.txt')
+# The goal of this exercise was to write a program that opens the text file, 
+# extract the number of words per line as well as the second word from each line
+# The code should be general enough that it can handle other text files according to the same principle. 
+# Assumptions: that such text files would contain between 1 and 1000 lines of text 
+# and that each line of text would contain between 2 and 1000 words.
+
+
+fyle = open('Shakespeare.txt')
+l_fyle = fyle.readlines()
+fyle.close
+new_list = []
+for i in l_fyle:
+    new_list.append(i.split())
+for i in new_list:
+    zahl = 0
+    for j in i:
+        zahl += 1
+    print(zahl, i[1])
