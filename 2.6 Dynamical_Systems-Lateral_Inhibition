@@ -1,0 +1,61 @@
+# This is an exercise on dynamical systems, specifically Lateral Inhibition
+# Lateral inhibition is a type of cell-cell interaction in which a cell that adopts a certain fate, inhibits the same cell fate in its direct neighbors
+# This is often observed in nature & in this way only a part of a group of cells with the same developmental potential aquire a certain cell fate
+# This type of interaction is for example very important in the development of our nervous system 
+# Lateral inhibition also undnerlies the selection of cells that produce hair
+
+# In 1996 it was discovered that the proteins Delta and Notch play a pivotal role in lateral inhibition in many systems
+# Collier er al. formulated a mathematical model to study the conditions under which lateral inhibition occurs
+# The model makes several assumptions:
+# Delta activates Notch in neighboring cells
+# Notch inactivates Delta in the same cell
+# The extent of protein degradation is proportional to protein concentration at present
+
+# In this exercise we were tasked to simulate lateral inhibition in two neighboring cells given these starting concentrations
+# Delta cell 1: 0.99, Notch cell 1: 1, Delta cell 2: 1, Notch cell 1: 1
+# Step size was set to 0.01, constants in the equations were set to b=100, k=2, h=2
+
+delta_1 = 0.99 		     #[Starting condition, given in exercise] 
+delta_1_change = 0 	   #[Create a new value for calculating the ΔDelta]
+notch_1 = 1 		       #[Starting condition, given in exercise]
+notch_1_change = 0
+delta_2 = 1  		       #[Starting condition, given in exercise]
+delta_2_change = 0
+notch_2 =  1 		       #[Starting condition, given in exercise]
+notch_2_change = 0
+t = 0 	
+Zeit = 50			         #[Tells me how often we will do this]
+stepsize = 0.01 		   #[Stepsize chosen at random as it does not mater as much as long as it's small enough]
+
+a=0.01 			           #[Constants, given in exercise] 
+b=100 
+k=2 
+h=2
+
+while t < Zeit: 		   #[Do it in a while loop for those 50 times]
+    
+    delta_1_change = (1 / (1 + (b * notch_1**h)) - delta_1) * stepsize
+    notch_1_change = (delta_2**k / (a + delta_2**k) - notch_1) * stepsize
+                       #[Because we update our values several times during one run we have to multiply the Δ values by the stepsize]
+    
+    delta_2_change = (1 / (1 + (b * notch_2**h)) - delta_2) * stepsize
+    notch_2_change = (delta_1**k / (a + delta_1**k) - notch_2) * stepsize
+    
+    delta_1 = delta_1 + delta_1_change 		#[The new delta is the previous delta + the change Δ]
+    delta_1_change = 0
+    
+    notch_1 = notch_1 + notch_1_change
+    notch_1_change = 0
+    
+    delta_2 = delta_2 + delta_2_change
+    delta_2_change = 0
+    
+    notch_2 = notch_2 + notch_2_change
+    notch_2_change = 0
+    
+    t += stepsize 		#[Increase my t by my stepsize]
+    
+print('Delta of cell 1:', delta_1)    # Delta of cell 1: 0.010102051443370176
+print('Notch of cell 1:', notch_1)    # Notch of cell 1: 0.989897948556578
+print('Delta of cell 2:', delta_2)    # Delta of cell 2: 0.9898979485560677
+print('Notch of cell 2:', notch_2)    # Notch of cell 2: 0.010102051443421725
