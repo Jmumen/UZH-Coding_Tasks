@@ -17,3 +17,10 @@ for i in new_list:
     for j in i:
         zahl += 1
     print(zahl, i[1])
+
+# For the given example the output looks as followed:
+# 10 in
+# 9 would
+# 8 than
+# 8 prais'd
+# 7 indiscretion 
